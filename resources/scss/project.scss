@@ -1,0 +1,62 @@
+.fm-container {
+    margin: 1.25rem;
+    border-radius: .625rem;
+    border: 2px solid black;
+
+    h6 {
+        margin: .625rem 0;
+        padding: .3125rem 1.25rem;
+
+    }
+
+    .box {
+        max-height: 27.5rem;
+    }
+
+    .fm-card {
+        width: calc(100% / 3 - 1.25rem);
+        padding: .625rem;
+        margin: .625rem .625rem;
+        background-color: rgba(0, 0, 155, 0.671);
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: .625rem;
+
+        .fm-btn {
+            margin-left: .625rem;
+            border: 2px solid rgb(0, 0, 0);
+            background-color: transparent;
+
+            a {
+                padding: .3125rem;
+                font-style: none;
+                text-decoration: none;
+                color: rgb(255, 255, 255);
+            }
+        }
+
+        .row {
+            padding-bottom: .625rem;
+            border-bottom: 2px solid rgb(0, 0, 0);
+
+            .fm-btn {
+                width: 6.875rem;
+            }
+        }
+    }
+
+}
+
+.fm-btn {
+    margin-top: .3125rem;
+    margin-bottom: .3125rem;
+    margin-left: .625rem;
+    border: 2px solid rgb(0, 0, 0);
+    background-color: transparent;
+
+    a {
+        padding: .3125rem;
+        font-style: none;
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+    }
+}
