@@ -23,11 +23,13 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             //validazione
-            [
-                'title' => 'required|max:50|min:5',
-                'description' => 'required|max:100|min:4',
-                'category_id' => ['nullable', 'exists:types,id'],
-            ]
+
+            'title' => 'required|max:50|min:5',
+            'code' =>  'required',
+            'description' => 'required|max:100|min:4',
+            'category_id' => ['nullable', 'exists:types,id'],
+            'technology' => ['nullable', 'exists:technology,id'],
+
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Technology;
 use App\Models\Type;
 
 class ProjectController extends Controller
@@ -24,8 +25,13 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        //prendiamo le tipologie e le importiamo in create
         $types = Type::all();
-        return view('Admin.Project.create', compact('types'));
+
+        //prendiamo le tecnologie e le importiamo in create
+        $technologies = Technology::all();
+
+        return view('Admin.Project.create', compact('types', 'technologies'));
     }
 
     /**
@@ -44,9 +50,12 @@ class ProjectController extends Controller
         $project->last_commit = $data['last_commit'];
         $project->type_id = $data['type_id'];
 
-
         //salviamo i dati
         $project->save();
+
+        //associamo i valori selezionati all id del progetto
+        $project->technology()->sync($data['technologies']);
+
         //reindiriziamo alla pagina principale
         return redirect()->route('admin.project.index');
     }
@@ -56,8 +65,10 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
+
         //tramite id mostriamo la pagina show.blade.php con i dati del progetto tramite id
         $project = Project::find($id);
+
         return view('admin.project.show', compact('project'));
     }
 
@@ -66,10 +77,14 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        //prendiamo le tipologie e le importiamo nell edit
         $types = Type::all();
 
+        //prendiamo le tecnologie e le importiamo in edit
+        $technologies = Technology::all();
+
         // mostriamo la pagina edit.blade.php 
-        return view('admin.project.edit', compact('project', 'types'));
+        return view('admin.project.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -89,6 +104,10 @@ class ProjectController extends Controller
 
         //salviamo i dati
         $project->save();
+
+        //associamo i valori selezionati all id del progetto
+        $project->technology()->sync($data['technologies']);
+
         //reindiriziamo alla pagina principale
         return redirect()->route('admin.project.index');
     }

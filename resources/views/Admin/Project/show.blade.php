@@ -30,9 +30,22 @@
         <strong class="me-1">Ultimo commit</strong>
         <div>{{$project->last_commit}}</div>
     </div>
+    
     <div class="d-flex">
         <strong class="me-1">Tipo</strong>
         <div>{{$project->type->title}}</div>
+    </div>
+
+    <div class="d-flex">
+        <div>
+            <strong class="me-1">Tecnologie utilizzate:</strong>
+        </div>
+        
+        <ul>
+            @foreach ($project->technology as $technology)
+                <div>{{ $technology->title }}</div>
+            @endforeach
+        </ul>
     </div>
     
     
