@@ -23,10 +23,13 @@ class UpdateProjectRequest extends FormRequest
     {
         return [
             //validazione
-            [
-                'title' => 'required|max:50|min:5',
-                'description' => 'required|max:100|min:4',
-            ]
+
+            'title' => 'required|string',
+            'description' => 'max:100|string',
+            'code' => 'max:30|string',
+            'last_commit' => 'date',
+            'type_id' => 'required|integer',
+            'technologies' => 'required|array',
         ];
     }
 }

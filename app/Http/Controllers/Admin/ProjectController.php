@@ -41,7 +41,7 @@ class ProjectController extends Controller
     {
 
         //dati da salvare
-        $data = $request->all();
+        $data = $request->validated();
 
         $project = new Project();
         $project->title = $data['title'];
@@ -94,7 +94,7 @@ class ProjectController extends Controller
     {
 
         //dati da salvare
-        $data = $request->all();
+        $data = $request->validated();
 
         $project->title = $data['title'];
         $project->description = $data['description'];
@@ -120,9 +120,12 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
         //metodo per eliminare 
+
+        $project_id = $project->id;
         $project->delete();
 
+
         //reindiriziamo alla pagina principale
-        return redirect()->route('admin.project.index');
+        return redirect()->route('admin.project.index')->with('message', 'progetto $project_id cancellato correttamente');
     }
 }
